@@ -3,7 +3,7 @@ h1.innerText = 'Compass Brain';
 var body = document.body;
 var firstChild = body.firstChild;
 body.insertBefore(h1, firstChild); //para exibir h1 no topo da página
-var posts = [
+var postsData = [
     {
         id: 1,
         title: 'Everything you need in the palm of your hand',
@@ -22,27 +22,33 @@ var commentPost = [
         id: 1,
         postId: 2,
         email: 'joao@gmail.com',
-        body: 'Sempre estou conectado, quero saber o que ocorre no mundo todo',
+        body: 'Sempre estou conectado, isso me atualiza sobre as mudanças no mundo todo',
     },
     {
         id: 2,
         postId: 2,
         email: 'gabriela123@gmail.com',
-        body: 'A informação chega de forma de tão rápida, isso facilita muito as tomadas de decisão',
+        body: 'Estar conectado se faz indispensável para o mundo dos negócios, que cada dia exige mais e mais conexões.'
     }
 ];
 var app = document.getElementById('app'); //cria variavel app e obtem o elemento de acordo com o id.
 //Se o id existir, crio a funcao que irá percorrer o array 'posts'  e renderizar a pagina inicial.
 if (app) {
     var pagePosts = function () {
-        app.innerHTML = " \n     <div class=\"image-gallery\"> \n      ".concat(posts.map(function (image) { return "\n        <div class='post'> \n          <button type='button' class='post-btn' data-id=\"".concat(image.id, "\"> \n            <a href=\"image.html\">\n              <img src=\"").concat(image.url, "\" alt=\"").concat(image.title, "\">\n            </a>\n            <div>\n              <h2>").concat(image.title, "</h2> \n              <p>").concat(image.description, "</p> \n            </div> \n          </button>\n        </div>\n      "); }).join(""), " \n     </div> \n    ");
+        app.innerHTML = " \n     <div class=\"image-gallery\"> \n      ".concat(postsData.map(function (_a) {
+            var description = _a.description, id = _a.id, title = _a.title, url = _a.url;
+            return "\n        <div class='post'> \n          <button type='button' class='post-btn' data-id=\"".concat(id, "\"> \n            <a href=\"image.html\">\n              <img src=\"").concat(url, "\" alt=\"").concat(title, "\">\n            </a>\n            <div>\n              <h2>").concat(title, "</h2> \n              <p>").concat(description, "</p> \n            </div> \n          </button>\n        </div>\n      ");
+        }).join(""), " \n     </div> \n    ");
     };
     //funcao recebe o parametro id e ao encontrar o id correspondente, renderiza a imagem com os dados
     //linha 90 - o array 'commentPost é mapeado e se o'postId' for igual ao id da imagem, renderiza os comentarios
     var pagePostComments = function (id) {
-        var image = posts.find(function (image) { return image.id === id; });
+        var image = postsData.find(function (image) { return image.id === id; });
         if (image) {
-            app.innerHTML = " \n        <div class=\"image\" data-id=\"".concat(image.id, "\"> \n          <img src=\"").concat(image.url, "\" alt=\"").concat(image.title, "\" /> \n          <h2>").concat(image.title, "</h2> \n          <p>").concat(image.description, "</p> \n        </div>\n        <div class=\"comments-gallery\"> \n          ").concat(commentPost.map(function (comment) { return "\n            ".concat(comment.postId === image.id ? "\n              <div class=\"comment\" data-id=\"".concat(comment.id, "\">\n                <p><strong>").concat(comment.email, "</strong></p> \n                <p>").concat(comment.body, "</p> \n              </div>\n            ") : '', " \n          "); }).join(""), " \n        </div> \n        <button type='button' class='back-btn'>Voltar</button>\n      ");
+            app.innerHTML = " \n        <div class=\"image\" data-id=\"".concat(image.id, "\"> \n          <img src=\"").concat(image.url, "\" alt=\"").concat(image.title, "\" /> \n          <h2>").concat(image.title, "</h2> \n          <p>").concat(image.description, "</p> \n        </div>\n        <div class=\"comments-gallery\"> \n          ").concat(commentPost.map(function (_a) {
+                var postId = _a.postId, email = _a.email, body = _a.body;
+                return "\n            ".concat(postId === image.id ? "\n              <div class=\"comment\" data-id=\"".concat(id, "\">\n                <p><strong>").concat(email, "</strong></p> \n                <p>").concat(body, "</p> \n              </div>\n            ") : '', " \n          ");
+            }).join(""), " \n        </div> \n        <button type='button' class='back-btn'>Voltar</button>\n      ");
             //crio o evento para que ao clicar no botao 'voltar' eu seja direcionada para a página index.html
             var backButton = app.querySelector('.back-btn');
             if (backButton) {

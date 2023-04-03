@@ -1,7 +1,7 @@
 const h1 = document.createElement('h1'); //criei o elemento h1
 h1.innerText = 'Compass Brain';
 
-const body = document.body;
+const body = document.body; 
 const firstChild = body.firstChild;
 
 body.insertBefore(h1, firstChild); //para exibir h1 no topo da página
@@ -14,7 +14,7 @@ interface PostType {
      url: string; 
  } 
   
- const posts: Array<PostType> = [ 
+ const postsData: Array<PostType> = [ 
      { 
          id: 1, 
          title: 'Everything you need in the palm of your hand', 
@@ -41,13 +41,13 @@ interface PostType {
          id: 1, 
          postId: 2,  
          email: 'joao@gmail.com', 
-         body: 'Sempre estou conectado, quero saber o que ocorre no mundo todo', 
+         body: 'Sempre estou conectado, isso me atualiza sobre as mudanças no mundo todo', 
      }, 
      { 
          id: 2, 
          postId: 2,  
          email: 'gabriela123@gmail.com', 
-         body: 'A informação chega de forma de tão rápida, isso facilita muito as tomadas de decisão', 
+         body: 'Estar conectado se faz indispensável para o mundo dos negócios, que cada dia exige mais e mais conexões.'
      } 
  ]; 
         
@@ -57,15 +57,15 @@ if (app) {
   const pagePosts = () => {
     app.innerHTML = ` 
      <div class="image-gallery"> 
-      ${posts.map((image) => `
+      ${postsData.map(({ description, id, title, url }) => `
         <div class='post'> 
-          <button type='button' class='post-btn' data-id="${image.id}"> 
+          <button type='button' class='post-btn' data-id="${id}"> 
             <a href="image.html">
-              <img src="${image.url}" alt="${image.title}">
+              <img src="${url}" alt="${title}">
             </a>
             <div>
-              <h2>${image.title}</h2> 
-              <p>${image.description}</p> 
+              <h2>${title}</h2> 
+              <p>${description}</p> 
             </div> 
           </button>
         </div>
@@ -78,7 +78,7 @@ if (app) {
   //linha 90 - o array 'commentPost é mapeado e se o'postId' for igual ao id da imagem, renderiza os comentarios
   const pagePostComments = (id: number) => { 
 
-  const image = posts.find((image) => image.id === id);
+  const image = postsData.find((image) => image.id === id);
     if (image) {
       app.innerHTML = ` 
         <div class="image" data-id="${image.id}"> 
@@ -87,11 +87,11 @@ if (app) {
           <p>${image.description}</p> 
         </div>
         <div class="comments-gallery"> 
-          ${commentPost.map((comment) => `
-            ${comment.postId === image.id ? `
-              <div class="comment" data-id="${comment.id}">
-                <p><strong>${comment.email}</strong></p> 
-                <p>${comment.body}</p> 
+          ${commentPost.map(({postId, email, body}) => `
+            ${postId === image.id ? `
+              <div class="comment" data-id="${id}">
+                <p><strong>${email}</strong></p> 
+                <p>${body}</p> 
               </div>
             ` : ''} 
           `).join("")} 
