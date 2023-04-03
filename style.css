@@ -1,0 +1,102 @@
+
+
+
+h1{
+  text-align: center;
+  font-size: 50px;
+  color: rgb(40, 40, 87);
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .post {
+    margin: 20px;
+    padding: 10px;
+    background-color: #b3baf5;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #707ce9;
+  }
+  
+  .post img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .post h2 {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color:rgb(40, 40, 87)
+  }
+  
+  .post p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color:rgb(40, 40, 87)
+  }
+  
+  .post-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .image img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .image h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .image p {
+    font-size: 1.5rem;
+  }
+  
+  .comments-gallery {
+    margin-top: 50px;
+  }
+  
+  .comment {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #ddd;
+  }
+  
+  .comment p {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  
+  .back-btn {
+    margin-top: 50px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #0062cc;
+    box-shadow: 2px 2px 10px #ddd;
+  }
